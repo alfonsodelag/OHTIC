@@ -46,9 +46,13 @@ const Chat = () => {
 };
 
 const SignIn = () => {
-  const signInWithGoogle = () => {
+  const signInWithGoogle = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
+    try {
+      await auth.signInWithPopup(provider);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
