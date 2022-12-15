@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import axios from "axios";
-import Spinner from "../UI/Spinner/Spinner";
 
 const date = new Date();
 const timestamp = date.getTime();
@@ -13,10 +12,8 @@ const esDate = new Intl.DateTimeFormat("es", {
 
 const Weather = () => {
   const [weatherData, setWeatherData] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
     const fetchWeatherData = async () => {
       await axios
         .get(
@@ -25,18 +22,12 @@ const Weather = () => {
         .then((response) => {
           setWeatherData(response.data);
         });
-
-      setIsLoading(false);
     };
     fetchWeatherData();
   }, []);
 
   const currentWeather = weatherData?.current;
   const dailyWeather = weatherData?.daily;
-
-  if (isLoading) {
-    return <Spinner />;
-  }
 
   return (
     <div className="p-5 w-full md:w-3/5">

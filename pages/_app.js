@@ -1,6 +1,5 @@
 import "../styles/globals.css";
 
-// import { SessionProvider } from "next-auth/react";
 import { Provider } from "react-redux";
 import store from "../public/src/app/store";
 import Header from "../components/Header";
@@ -9,7 +8,6 @@ import RightSidebar from "../components/RightSidebar";
 
 function MyApp({ Component, pageProps }) {
   return (
-    // <SessionProvider session={pageProps.session}>
     <Provider store={store}>
       <Header />
       <main className="flex justify-between bg-gray-100">
@@ -18,7 +16,6 @@ function MyApp({ Component, pageProps }) {
         <RightSidebar />
       </main>
     </Provider>
-    // </SessionProvider>
   );
 }
 
